@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sävö 2026 🌿</title>
+  <style>
+    :root {
+      --green: #2d6a4f;
+      --green-light: #52b788;
+      --green-pale: #d8f3dc;
+      --sand: #f8f4ed;
+      --text: #1b2f23;
+      --muted: #6b7f74;
+      --card: #ffffff;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--sand);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--green);
+      color: white;
+      text-align: center;
+      padding: 48px 24px 36px;
+    }
+    header h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.5px; }
+    header p.sub { font-size: 1.1rem; opacity: 0.85; margin-top: 6px; }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .countdown-box {
+      background: rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 14px 22px;
+      min-width: 80px;
+    }
+    .countdown-box .num { font-size: 2rem; font-weight: 700; display: block; }
+    .countdown-box .lbl { font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .card h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--green);
+      border-bottom: 2px solid var(--green-pale);
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+    }
+
+    /* INFO GRID */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .info-item { background: var(--green-pale); border-radius: 8px; padding: 14px 16px; }
+    .info-item .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 4px; }
+    .info-item .value { font-weight: 600; font-size: 0.95rem; }
+
+    /* TABLES */
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th {
+      background: var(--green-pale);
+      color: var(--green);
+      font-weight: 700;
+      text-align: left;
+      padding: 10px 12px;
+    }
+    td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafaf8; }
+
+    /* SCHEDULE */
+    .day-block { margin-bottom: 20px; }
+    .day-header {
+      background: var(--green);
+      color: white;
+      border-radius: 8px 8px 0 0;
+      padding: 10px 16px;
+      font-weight: 700;
+    }
+    .day-header span.date { opacity: 0.75; font-weight: 400; font-size: 0.9rem; margin-left: 8px; }
+    .day-body {
+      border: 1px solid #e8e8e8;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 14px 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+    .day-item .di-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 3px; }
+    .day-item .di-val { font-size: 0.92rem; }
+    .tag {
+      display: inline-block;
+      background: var(--green-pale);
+      color: var(--green);
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .tag.veg { background: #e8f5e9; color: #2e7d32; }
+    .tag.activity { background: #e3f2fd; color: #1565c0; }
+
+    /* ROOMS */
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .room-card {
+      border: 1px solid var(--green-pale);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .room-card .room-name { font-weight: 700; color: var(--green); }
+    .room-card .room-house { font-size: 0.78rem; color: var(--muted); margin-bottom: 6px; }
+    .room-card .room-guests { font-size: 0.88rem; }
+
+    /* DUTY */
+    .duty-row { display: flex; gap: 12px; align-items: center; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+    .duty-row:last-child { border-bottom: none; }
+    .duty-day { min-width: 110px; font-weight: 600; font-size: 0.88rem; }
+    .duty-names { font-size: 0.9rem; color: var(--text); }
+
+    /* FORM SECTION */
+    .form-questions { display: flex; flex-direction: column; gap: 14px; }
+    .question-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--green-pale);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .question-item .q-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .question-item .q-text { font-size: 0.93rem; }
+    .question-item .q-text strong { display: block; margin-bottom: 2px; }
+    .btn {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
+      margin-top: 18px;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #1f5139; }
+
+    /* PRACTICAL */
+    .practical-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .prac-item { padding: 14px; background: var(--green-pale); border-radius: 8px; }
+    .prac-item h3 { font-size: 0.88rem; color: var(--green); font-weight: 700; margin-bottom: 6px; }
+    .prac-item p { font-size: 0.85rem; line-height: 1.5; }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      .countdown-box { padding: 10px 14px; min-width: 64px; }
+      .countdown-box .num { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- =========================================================
+     REDIGERA DATA HÄR – ändra utan att röra resten av sidan
+     ========================================================= -->
+<script>
+// ─── MÅLTIDSSCHEMA ───────────────────────────────────────────
+// Fyll i lunch och middag per dag. Lämna "" om inget är bestämt.
+const MEALS = {
+  "2026-07-12": { lunch: "",          dinner: "",          dinner_veg: "" },
+  "2026-07-13": { lunch: "",          dinner: "",          dinner_veg: "" },
+  "2026-07-14": { lunch: "",          dinner: "",          dinner_veg: "" },
+  "2026-07-15": { lunch: "",          dinner: "",          dinner_veg: "" },
+  "2026-07-16": { lunch: "",          dinner: "",          dinner_veg: "" },
+  "2026-07-17": { lunch: "",          dinner: "",          dinner_veg: "" },
+  "2026-07-18": { lunch: "",          dinner: "",          dinner_veg: "" },
+  "2026-07-19": { lunch: "Eget",      dinner: "",          dinner_veg: "" },
+};
+
+// ─── DAGSPROGRAM ─────────────────────────────────────────────
+const SCHEDULE = [
+  { date: "2026-07-12", day: "Söndag",  label: "Ankomst & installation",  activity: "Välkomstmiddag 🍖", notes: "Leverans 1 från ICA Trossen" },
+  { date: "2026-07-13", day: "Måndag",  label: "Fridag – utforska ön",    activity: "Bastu 🧖 (kväll)",  notes: "" },
+  { date: "2026-07-14", day: "Tisdag",  label: "Kajak 🚣",                activity: "Kajak (förbokat)",  notes: "" },
+  { date: "2026-07-15", day: "Onsdag",  label: "Skärgårdstur ⛵",         activity: "Skärgårdstur (förbokat)", notes: "" },
+  { date: "2026-07-16", day: "Torsdag", label: "Utflykt till fastlandet", activity: "Trosa / Stendörren 🗺️", notes: "Leverans 2 från ICA Trossen" },
+  { date: "2026-07-17", day: "Fredag",  label: "Fridag + Festkväll 🎉",   activity: "Lek & bad",         notes: "Stor gemensam middag på kvällen" },
+  { date: "2026-07-18", day: "Lördag",  label: "Lugn dag & packdag",      activity: "Bad + Bastu 🧖",    notes: "" },
+  { date: "2026-07-19", day: "Söndag",  label: "Hemresa kl. 11.00 🏠",    activity: "",                  notes: "Städning innan avfärd" },
+];
+
+// ─── MATANSVARIG ─────────────────────────────────────────────
+const MAT_ANSVARIG = [
+  { date: "2026-07-12", names: "Ivan, Challe & Jacob" },
+  { date: "2026-07-13", names: "Olov & Joanna" },
+  { date: "2026-07-14", names: "Erik, Jenny J & Theo" },
+  { date: "2026-07-15", names: "Johannes & Mia" },
+  { date: "2026-07-16", names: "Ludvig & Elin" },
+  { date: "2026-07-17", names: "Eric & Jenny D" },
+  { date: "2026-07-18", names: "Chiffe, Emilia & Simon" },
+];
+
+// ─── AKTIVITETSANSVARIG (barn) ───────────────────────────────
+const AKTIV_ANSVARIG = [
+  { date: "2026-07-12", names: "–" },
+  { date: "2026-07-13", names: "Olov & Jenny J" },
+  { date: "2026-07-14", names: "Joanna & Johannes" },
+  { date: "2026-07-15", names: "Erik & Mia" },
+  { date: "2026-07-16", names: "Ludvig & Jenny D" },
+  { date: "2026-07-17", names: "Elin & Chiffe" },
+  { date: "2026-07-18", names: "Eric & Emilia" },
+];
+
+// ─── GOOGLE FORMS-LÄNK ──────────────────────────────────────
+// Ersätt med din riktiga Google Forms-länk när du skapat formuläret
+const FORM_URL = "https://forms.google.com/ERSÄTT-MED-DIN-LÄNK";
+
+// ─── RUMSFÖRDELNING ──────────────────────────────────────────
+const ROOMS = [
+  { name: "Syren",        house: "Båtsmannen", beds: "4 + extrasäng", guests: "Erik, Jenny J, Maja J, August, Theodor" },
+  { name: "Blåblom",      house: "Lotsen",     beds: "4 + extrasäng", guests: "Eric, Jenny D, Harry, Barn 2, Maja D" },
+  { name: "Vildros",      house: "Lotsen",     beds: "4 + extrasäng", guests: "Olov, Joanna, Freddie, Liv" },
+  { name: "Linnea",       house: "Båtsmannen", beds: "4 våningssängar", guests: "Johannes, Mia, Henry, Julian" },
+  { name: "Murgröna",     house: "Båtsmannen", beds: "4 våningssängar", guests: "Jacob, Theo, Simon" },
+  { name: "Ängeln",       house: "Båtsmannen", beds: "3",             guests: "Ludvig, Elin, Louie, Sally" },
+  { name: "Himmelen",     house: "Båtsmannen", beds: "2",             guests: "Ivan, Challe, Elliot (+ Meja i föräldrasäng)" },
+  { name: "Glampingtält", house: "–",          beds: "Dubbelsäng",   guests: "Chiffe, Emilia (+ Ines i föräldrasäng)" },
+];
+</script>
+
+<!-- =========================================================
+     SIDA – redigera inte nedanför om du inte vet vad du gör
+     ========================================================= -->
+
+<header>
+  <h1>🌿 Sävö 2026</h1>
+  <p class="sub">Vecka 29 · 12–19 juli · Sävö Vandrarhem & Café</p>
+  <div class="countdown" id="countdown">
+    <div class="countdown-box"><span class="num" id="cd-days">–</span><span class="lbl">Dagar</span></div>
+    <div class="countdown-box"><span class="num" id="cd-hours">–</span><span class="lbl">Timmar</span></div>
+    <div class="countdown-box"><span class="num" id="cd-min">–</span><span class="lbl">Minuter</span></div>
+    <div class="countdown-box"><span class="num" id="cd-sec">–</span><span class="lbl">Sekunder</span></div>
+  </div>
+</header>
+
+<main>
+
+  <!-- PRAKTISK INFO -->
+  <div class="card">
+    <h2>📋 Praktisk information</h2>
+    <div class="practical-grid">
+      <div class="prac-item">
+        <h3>🅿️ Parkering</h3>
+        <p>Gratis parkering vid Källviksbryggan. Lasta ur bilen och parkera sedan på parkeringen. Inga laddstolpar.</p>
+      </div>
+      <div class="prac-item">
+        <h3>⛵ Båten</h3>
+        <p>Max 12 passagerare per tur, kör flera turer vid behov. Överfart ca 10 minuter. Flytvästar finns.</p>
+      </div>
+      <div class="prac-item">
+        <h3>🕐 Ordinarie båttider</h3>
+        <p>Från Sävö: 11.00<br>Till Sävö: 16.00<br>Retur efter 18.00: 220 kr/tur</p>
+      </div>
+      <div class="prac-item">
+        <h3>🧳 Bagage</h3>
+        <p>Bagagekärror finns vid bryggan. Ca 100m till vandrarhemmet.</p>
+      </div>
+      <div class="prac-item">
+        <h3>🍳 På plats</h3>
+        <p>Diskmaskin i ett av gästköken. Diskmedelstabletter och handdiskmedel finns. Basvaror i receptionen: mjölk, kaffe, grillkol.</p>
+      </div>
+      <div class="prac-item">
+        <h3>📞 Kontakt</h3>
+        <p>Maaike Bäck-Tysma<br>+46 76-030 36 16<br>info@savovandrarhemcafe.se</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="card">
+    <h2>ℹ️ Bokning</h2>
+    <div class="info-grid">
+      <div class="info-item"><div class="label">Ankomst</div><div class="value">Söndag 12 juli 2026</div></div>
+      <div class="info-item"><div class="label">Hemresa</div><div class="value">Söndag 19 juli kl. 11.00</div></div>
+      <div class="info-item"><div class="label">Antal nätter</div><div class="value">7 nätter</div></div>
+      <div class="info-item"><div class="label">Antal gäster</div><div class="value">31 personer (17 vuxna, 14 barn)</div></div>
+      <div class="info-item"><div class="label">Sänglinne & handdukar</div><div class="value">Hyrs av vandrarhemet</div></div>
+      <div class="info-item"><div class="label">Slutstädning</div><div class="value">Bokas via vandrarhemet</div></div>
+    </div>
+  </div>
+
+  <!-- RUMSFÖRDELNING -->
+  <div class="card">
+    <h2>🛏️ Rumsfördelning</h2>
+    <div class="rooms-grid" id="rooms-grid"></div>
+  </div>
+
+  <!-- VECKOSCHEMA -->
+  <div class="card">
+    <h2>📅 Veckoschema</h2>
+    <div id="schedule-container"></div>
+  </div>
+
+  <!-- MATANSVARIG -->
+  <div class="card">
+    <h2>👨‍🍳 Matansvarig</h2>
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:14px;">Varje dag ansvarar utsedd person/par för att koordinera och laga middag.</p>
+    <div id="mat-ansvarig"></div>
+  </div>
+
+  <!-- AKTIVITETSANSVARIG -->
+  <div class="card">
+    <h2>🎯 Aktivitetsansvarig (barn)</h2>
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:14px;">Föräldrar turas om att hålla koll på och organisera aktiviteter för barnen.</p>
+    <div id="aktiv-ansvarig"></div>
+  </div>
+
+  <!-- GRUPPFRÅGOR -->
+  <div class="card">
+    <h2>❓ Svara på gruppfrågorna</h2>
+    <p style="font-size:0.9rem;margin-bottom:18px;">Vi behöver svar från alla familjer på nedanstående frågor. Fyll i formuläret – det tar 2 minuter!</p>
+    <div class="form-questions">
+      <div class="question-item">
+        <div class="q-icon">⛵</div>
+        <div class="q-text"><strong>Ankomsttid</strong>Vilken tid vill din familj komma med båten? (10.30, 12.30 eller 16.00)</div>
+      </div>
+      <div class="question-item">
+        <div class="q-icon">🏠</div>
+        <div class="q-text"><strong>Hemresa</strong>Åker alla i din familj hem söndag 19 juli kl. 11.00, eller behöver någon åka tidigare?</div>
+      </div>
+      <div class="question-item">
+        <div class="q-icon">🥜</div>
+        <div class="q-text"><strong>Matallergier & intoleranser</strong>Har någon i din familj allergier eller matintoleranser vi behöver ta hänsyn till?</div>
+      </div>
+    </div>
+    <a class="btn" href="#" id="form-link" target="_blank">👉 Fyll i formuläret</a>
+  </div>
+
+</main>
+
+<footer>
+  Sävö 2026 · Planerad med kärlek ❤️
+</footer>
+
+<script>
+  // ── Countdown ──────────────────────────────────────────────
+  function updateCountdown() {
+    const target = new Date("2026-07-12T10:00:00");
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      document.getElementById("countdown").innerHTML = "<div class='countdown-box'><span class='num'>🎉</span><span class='lbl'>Vi är där!</span></div>";
+      return;
+    }
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000)  / 60000);
+    const secs  = Math.floor((diff % 60000)    / 1000);
+    document.getElementById("cd-days").textContent  = days;
+    document.getElementById("cd-hours").textContent = String(hours).padStart(2,"0");
+    document.getElementById("cd-min").textContent   = String(mins).padStart(2,"0");
+    document.getElementById("cd-sec").textContent   = String(secs).padStart(2,"0");
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ── Form link ──────────────────────────────────────────────
+  document.getElementById("form-link").href = FORM_URL;
+
+  // ── Rooms ──────────────────────────────────────────────────
+  const roomsGrid = document.getElementById("rooms-grid");
+  ROOMS.forEach(r => {
+    roomsGrid.innerHTML += `
+      <div class="room-card">
+        <div class="room-name">${r.name}</div>
+        <div class="room-house">${r.house} · ${r.beds}</div>
+        <div class="room-guests">${r.guests}</div>
+      </div>`;
+  });
+
+  // ── Schedule ───────────────────────────────────────────────
+  const dayNames = { "2026-07-12":"12 jul","2026-07-13":"13 jul","2026-07-14":"14 jul","2026-07-15":"15 jul","2026-07-16":"16 jul","2026-07-17":"17 jul","2026-07-18":"18 jul","2026-07-19":"19 jul" };
+  const sc = document.getElementById("schedule-container");
+  SCHEDULE.forEach(s => {
+    const m = MEALS[s.date] || {};
+    const lunch   = m.lunch   || "<em style='color:#aaa'>Ej inlagt</em>";
+    const dinner  = m.dinner  || "<em style='color:#aaa'>Ej inlagt</em>";
+    const dv      = m.dinner_veg ? `<br><span class='tag veg'>🌿 Veg: ${m.dinner_veg}</span>` : "";
+    const act     = s.activity ? `<span class='tag activity'>${s.activity}</span>` : "";
+    const notes   = s.notes   ? `<small style='color:var(--muted)'>${s.notes}</small>` : "";
+    sc.innerHTML += `
+      <div class="day-block">
+        <div class="day-header">${s.day}<span class="date">${dayNames[s.date]} · ${s.label}</span></div>
+        <div class="day-body">
+          <div class="day-item"><div class="di-label">Aktivitet</div><div class="di-val">${act || "–"}</div>${notes ? `<div>${notes}</div>` : ""}</div>
+          <div class="day-item"><div class="di-label">Lunch</div><div class="di-val">${lunch}</div></div>
+          <div class="day-item"><div class="di-label">Middag</div><div class="di-val">${dinner}${dv}</div></div>
+        </div>
+      </div>`;
+  });
+
+  // ── Matansvarig ────────────────────────────────────────────
+  const matEl = document.getElementById("mat-ansvarig");
+  MAT_ANSVARIG.forEach(m => {
+    const d = new Date(m.date);
+    const label = d.toLocaleDateString("sv-SE", {weekday:"short", day:"numeric", month:"short"});
+    matEl.innerHTML += `<div class="duty-row"><div class="duty-day">${label}</div><div class="duty-names">👨‍🍳 ${m.names}</div></div>`;
+  });
+
+  // ── Aktivitetsansvarig ─────────────────────────────────────
+  const aktivEl = document.getElementById("aktiv-ansvarig");
+  AKTIV_ANSVARIG.forEach(a => {
+    const d = new Date(a.date);
+    const label = d.toLocaleDateString("sv-SE", {weekday:"short", day:"numeric", month:"short"});
+    aktivEl.innerHTML += `<div class="duty-row"><div class="duty-day">${label}</div><div class="duty-names">${a.names !== "–" ? "🎯 " : ""}${a.names}</div></div>`;
+  });
+</script>
+</body>
+</html>
