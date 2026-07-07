@@ -378,6 +378,13 @@ const ROOMS = [
       <div class="info-item"><div class="label">Sänglinne & handdukar</div><div class="value">Hyrs av vandrarhemet</div></div>
       <div class="info-item"><div class="label">Slutstädning</div><div class="value">Bokas via vandrarhemet</div></div>
     </div>
+    <div class="notice" style="margin-top:16px;">
+      <div class="notice-icon">☀️</div>
+      <div class="notice-text">
+        <strong>Vädret ser lovande ut för vår vecka!</strong><br>
+        Tänk gärna till en extra gång och ta med er lite underhållning — spel, musik, böcker eller vad ni nu gillar — om det finns bagageutrymme kvar. Det brukar uppskattas på en ö!
+      </div>
+    </div>
   </div>
 
   <!-- RUMSFÖRDELNING -->
@@ -390,13 +397,13 @@ const ROOMS = [
   <div class="card">
     <h2>📅 Veckoschema</h2>
     <div class="notice">
-      <div class="notice-icon">📝</div>
+      <div class="notice-icon">✅</div>
       <div class="notice-text">
-        <strong>Lunch- och middagsmeny på gång</strong><br>
-        Menyn för veckan läggs in inom kort — Ivan stämmer av med ICA i Trosa först.
+        <strong>All mat är beställd från ICA Trossen!</strong><br>
+        Matlagets uppgift är att värma och servera rätterna — ingen avancerad matlagning krävs. Maten levereras i tre omgångar: ankomsten sön 12/7, samt till <strong>Källvik brygga tis 14/7 och fre 17/7 kl. 09:30</strong>. Två personer från matlaget kör över med motorbåten för att möta upp och hämta leveranserna på tisdag och fredag.
       </div>
     </div>
-    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:14px;">🍽️ <strong>Lunch</strong> är en friare måltid — enklare mat ordnas men ni kan också lösa det själv eller besöka caféet (ons–sön 10:30–16:00). <strong>Middag</strong> lagas gemensamt av dagens matansvariga.</p>
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:14px;">🍽️ <strong>Lunch</strong> är en friare måltid — enklare mat ordnas men ni kan också lösa det själv eller besöka caféet (ons–sön 10:30–16:00). <strong>Middag</strong> värms och serveras av dagens matansvariga.</p>
     <div id="schedule-container"></div>
   </div>
 
@@ -414,26 +421,19 @@ const ROOMS = [
     <div id="aktiv-ansvarig"></div>
   </div>
 
-  <!-- GRUPPFRÅGOR -->
+  <!-- DRYCK -->
   <div class="card">
-    <h2>❓ Svara på gruppfrågorna</h2>
-    <p style="font-size:0.9rem;margin-bottom:18px;">Vi behöver svar från alla – familjer och övriga – på nedanstående frågor. Fyll i formuläret – det tar 2 minuter!</p>
-    <div class="form-questions">
-      <div class="question-item">
-        <div class="q-icon">⛵</div>
-        <div class="q-text"><strong>Ankomsttid</strong>Vilken tid vill du/ni komma med båten? (10.30, 12.30 eller 16.00)</div>
-      </div>
-      <div class="question-item">
-        <div class="q-icon">🏠</div>
-        <div class="q-text"><strong>Hemresa</strong>Åker du/ni hem söndag 19 juli kl. 11.00, eller behöver du/ni åka tidigare?</div>
-      </div>
-      <div class="question-item">
-        <div class="q-icon">🥜</div>
-        <div class="q-text"><strong>Matallergier & intoleranser</strong>Har du eller någon i din grupp allergier eller matintoleranser vi behöver ta hänsyn till?</div>
-      </div>
+    <h2>🥤 Dryck som ingår</h2>
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:14px;">Följande drycker ingår i ICA-beställningen och finns tillgängliga under veckan.</p>
+    <div class="info-grid">
+      <div class="info-item"><div class="label">Frukostdryck</div><div class="value">Apelsinjuice · Äpple/fläder-juice · Kaffe · Te (svart & Earl Grey) · Havremjölk · Mjölk</div></div>
+      <div class="info-item"><div class="label">Alkoholfri kväll</div><div class="value">Mariestads Alkoholfri öl · Herrljunga Smultron Cider (alkoholfri) · Somersby Päron Cider (alkoholfri)</div></div>
+      <div class="info-item"><div class="label">Barn</div><div class="value">ICA Eko Fruktdryck Äpple/Päron/Jordgubb (juiceboxar)</div></div>
+      <div class="info-item"><div class="label">Glass & snacks</div><div class="value">Glasspinnar, Piggelin, GB Gammaldags vanilj · Chips & popcorn</div></div>
+      <div class="info-item"><div class="label">Alkoholhaltiga drycker</div><div class="value">Medhavda själva eller köps på Systembolaget i ICA Trosa</div></div>
     </div>
-    <a class="btn" href="#" id="form-link" target="_blank">👉 Fyll i formuläret</a>
   </div>
+
 
 </main>
 
