@@ -170,34 +170,6 @@
     .duty-day { min-width: 110px; font-weight: 600; font-size: 0.88rem; }
     .duty-names { font-size: 0.9rem; color: var(--text); }
 
-    /* FORM SECTION */
-    .form-questions { display: flex; flex-direction: column; gap: 14px; }
-    .question-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      background: var(--green-pale);
-      border-radius: 8px;
-      padding: 14px 16px;
-    }
-    .question-item .q-icon { font-size: 1.4rem; flex-shrink: 0; }
-    .question-item .q-text { font-size: 0.93rem; }
-    .question-item .q-text strong { display: block; margin-bottom: 2px; }
-    .btn {
-      display: inline-block;
-      background: var(--green);
-      color: white;
-      text-decoration: none;
-      padding: 13px 28px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 1rem;
-      text-align: center;
-      margin-top: 18px;
-      transition: background 0.2s;
-    }
-    .btn:hover { background: #1f5139; }
-
     /* PRACTICAL */
     .practical-grid {
       display: grid;
@@ -295,10 +267,6 @@ const AKTIV_ANSVARIG = [
   { date: "2026-07-18", names: "Olov, Challe & Ludvig" },
 ];
 
-// ─── GOOGLE FORMS-LÄNK ──────────────────────────────────────
-// Ersätt med din riktiga Google Forms-länk när du skapat formuläret
-const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdzTvFi3yr_EkDLgdMs7uGYik26Jt7T0K44LGY1s38RvbYziA/viewform";
-
 // ─── RUMSFÖRDELNING ──────────────────────────────────────────
 const ROOMS = [
   { name: "Syren",        house: "Båtsmannen", beds: "4 + extrasäng", guests: "Erik, Jenny J, Maja J, August, Theodor" },
@@ -374,7 +342,7 @@ const ROOMS = [
       <div class="info-item"><div class="label">Ankomst</div><div class="value">Söndag 12 juli 2026</div></div>
       <div class="info-item"><div class="label">Hemresa</div><div class="value">Söndag 19 juli kl. 11.00</div></div>
       <div class="info-item"><div class="label">Antal nätter</div><div class="value">7 nätter</div></div>
-      <div class="info-item"><div class="label">Antal gäster</div><div class="value">31 personer (17 vuxna, 14 barn)</div></div>
+      <div class="info-item"><div class="label">Antal gäster</div><div class="value">32 personer (17 vuxna, 15 barn)</div></div>
       <div class="info-item"><div class="label">Sänglinne & handdukar</div><div class="value">Hyrs av vandrarhemet</div></div>
       <div class="info-item"><div class="label">Slutstädning</div><div class="value">Ingår i bokningen ✅</div></div>
       <div class="info-item"><div class="label">Motorbåt</div><div class="value">Hyrd för hela veckan 🚤</div></div>
@@ -404,14 +372,14 @@ const ROOMS = [
         Matlagets uppgift är att värma och servera rätterna — ingen avancerad matlagning krävs. Maten levereras i tre omgångar: ankomsten sön 12/7, samt till <strong>Källvik brygga tis 14/7 och fre 17/7 kl. 09:30</strong>. Två personer från matlaget kör över med motorbåten för att möta upp och hämta leveranserna på tisdag och fredag.
       </div>
     </div>
-    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:14px;">🍽️ <strong>Lunch</strong> är en friare måltid — enklare mat ordnas men ni kan också lösa det själv eller besöka caféet (ons–sön 10:30–16:00). <strong>Middag</strong> värms och serveras av dagens matansvariga.</p>
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:14px;">🍽️ <strong>Lunch</strong> är en friare måltid — maten är beställd men ni kan också besöka caféet (ons–sön 10:30–16:00). <strong>Middag</strong> värms och serveras av dagens matansvariga.</p>
     <div id="schedule-container"></div>
   </div>
 
   <!-- MATANSVARIG -->
   <div class="card">
     <h2>👨‍🍳 Matansvarig</h2>
-    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:14px;">Varje dag ansvarar utsedd person/par för att koordinera och laga middag.</p>
+    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:14px;">Varje dag ansvarar utsedd person/par för att värma och servera middagen.</p>
     <div id="mat-ansvarig"></div>
   </div>
 
