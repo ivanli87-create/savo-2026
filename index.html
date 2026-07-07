@@ -225,7 +225,7 @@ const MEALS = {
                   dinner: "Lax- och räksmörgåstårta 2x12 bitar (ICA)",
                   dinner_veg: "Vegetarisk smörgåstårta x3 bitar (ICA)",
                   dinner_allergy: "Glutenfri lax- och räksmörgåstårta x3 bitar (ICA)",
-                  dessert: "Gräddtårta jordgubb 16 bitar · Prinsesstårta 16 bitar · Glass (ICA)" },
+                  dessert: "" },
   "2026-07-18": { lunch: "Kycklingpasta med paprika och örter 1x (Carolines)",
                   dinner: "Lasagne Vegetariana storpack x2 · Lasagne Bolognese storpack x1",
                   dinner_veg: "Samma",
@@ -465,8 +465,8 @@ const ROOMS = [
   const sc = document.getElementById("schedule-container");
   SCHEDULE.forEach(s => {
     const m = MEALS[s.date] || {};
-    const lunch   = m.lunch   || "<em style='color:#aaa'>Ej inlagt</em>";
-    const dinner  = m.dinner  || "<em style='color:#aaa'>Ej inlagt</em>";
+    const lunch   = m.lunch   || "<em style='color:#aaa'>N/A</em>";
+    const dinner  = m.dinner  || "<em style='color:#aaa'>N/A</em>";
     const dv      = m.dinner_veg     ? `<br><span class='tag veg'>🌿 Veg: ${m.dinner_veg}</span>` : "";
     const da      = m.dinner_allergy ? `<br><span class='tag allergy'>⚠️ Allergi: ${m.dinner_allergy}</span>` : "";
     const dessert = m.dessert        ? `<br><span class='tag dessert'>🍰 Dessert: ${m.dessert}</span>` : "";
