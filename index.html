@@ -424,14 +424,31 @@ const ROOMS = [
 
   <!-- DRYCK -->
   <div class="card">
-    <h2>🥤 Dryck som ingår</h2>
-    <p style="font-size:0.88rem;color:var(--muted);margin-bottom:14px;">Följande drycker ingår i ICA-beställningen och finns tillgängliga under veckan.</p>
-    <div class="info-grid">
-      <div class="info-item"><div class="label">Frukostdryck</div><div class="value">Apelsinjuice · Äpple/fläder-juice · Kaffe · Te (svart & Earl Grey) · Havremjölk · Mjölk</div></div>
-      <div class="info-item"><div class="label">Alkoholfri kväll</div><div class="value">Mariestads Alkoholfri öl · Herrljunga Smultron Cider (alkoholfri) · Somersby Päron Cider (alkoholfri)</div></div>
-      <div class="info-item"><div class="label">Barn</div><div class="value">ICA Eko Fruktdryck Äpple/Päron/Jordgubb (juiceboxar)</div></div>
-      <div class="info-item"><div class="label">Glass & snacks</div><div class="value">Glasspinnar, Piggelin, GB Gammaldags vanilj · Chips & popcorn</div></div>
-      <div class="info-item" style="background:#fff3e0;border-left:4px solid #e65100;"><div class="label" style="color:#e65100;">⚠️ Alkoholhaltiga drycker</div><div class="value">Medhavda själva eller köps på Systembolaget i ICA Trosa — ingår ej i leveransen!</div></div>
+    <h2>🥤 Dryck & snacks som ingår</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px;">
+      <div class="info-item">
+        <div class="label">☀️ Frukost</div>
+        <div class="value">Apelsinjuice · Äpple/fläder-juice · Kaffe · Te (svart & Earl Grey) · Havremjölk · Mjölk</div>
+      </div>
+      <div class="info-item">
+        <div class="label">🍺 Alkoholfritt (kväll)</div>
+        <div class="value">Mariestads Alkoholfri öl · Herrljunga Smultron Cider · Somersby Päron Cider</div>
+      </div>
+      <div class="info-item">
+        <div class="label">🧃 Barn</div>
+        <div class="value">ICA Eko Fruktdryck Äpple/Päron/Jordgubb (juiceboxar)</div>
+      </div>
+      <div class="info-item">
+        <div class="label">🍦 Glass & snacks</div>
+        <div class="value">Glasspinnar · Piggelin · GB Gammaldags vanilj · Chips & popcorn</div>
+      </div>
+    </div>
+    <div class="notice" style="background:#fff3e0;border-left:4px solid #e65100;">
+      <div class="notice-icon">🍷</div>
+      <div class="notice-text" style="color:#5d2e00;">
+        <strong>Alkoholhaltiga drycker ingår inte</strong><br>
+        Medhavda själva eller köps på Systembolaget i Trosa.
+      </div>
     </div>
   </div>
 
