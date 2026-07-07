@@ -130,6 +130,8 @@
     }
     .tag.veg { background: #e8f5e9; color: #2e7d32; }
     .tag.activity { background: #e3f2fd; color: #1565c0; }
+    .tag.allergy { background: #fff3e0; color: #e65100; }
+    .tag.dessert { background: #fce4ec; color: #880e4f; }
 
     /* NOTICE BANNER */
     .notice {
@@ -229,14 +231,34 @@
 // ─── MÅLTIDSSCHEMA ───────────────────────────────────────────
 // Fyll i lunch och middag per dag. Lämna "" om inget är bestämt.
 const MEALS = {
-  "2026-07-12": { lunch: "",          dinner: "",          dinner_veg: "" },
-  "2026-07-13": { lunch: "",          dinner: "",          dinner_veg: "" },
-  "2026-07-14": { lunch: "",          dinner: "",          dinner_veg: "" },
-  "2026-07-15": { lunch: "",          dinner: "",          dinner_veg: "" },
-  "2026-07-16": { lunch: "",          dinner: "",          dinner_veg: "" },
-  "2026-07-17": { lunch: "",          dinner: "",          dinner_veg: "" },
-  "2026-07-18": { lunch: "",          dinner: "",          dinner_veg: "" },
-  "2026-07-19": { lunch: "Eget",      dinner: "",          dinner_veg: "" },
+  "2026-07-12": { lunch: "",
+                  dinner: "Grillplanka x13 · Barnplanka x10 · Potatissallad x25",
+                  dinner_veg: "Veg. Planka x2" },
+  "2026-07-13": { lunch: "Pasta Carbonara x2 (Carolines)",
+                  dinner: "Tortellone med tomatsås och bechamel Storpack x6 (Carolines)",
+                  dinner_veg: "Köp veg. köttbullar separat",
+                  dinner_allergy: "Samma som standardmiddag" },
+  "2026-07-14": { lunch: "Korv med bröd (ICA)",
+                  dinner: "Kyckling-schnitzel storpack x3 · Klyftpotatis storpack x2 (Carolines)",
+                  dinner_veg: "Köp veg. schnitzel separat" },
+  "2026-07-15": { lunch: "Piroger kyckling x1 · Piroger Fetaost & Spenat x1 (Carolines)",
+                  dinner: "Köttbullar storpack x2 · Potatismos storpack x2 · Lingonsylt storpack x1 · Gräddsås storpack x1 (Carolines)",
+                  dinner_veg: "Samma",
+                  dinner_allergy: "Biff Stroganoff Enportion (Carolines)" },
+  "2026-07-16": { lunch: "Mackor (Egna)",
+                  dinner: "Kyckling Teriyakigryta storpack x2 · Ris x2 (Carolines)",
+                  dinner_veg: "Vego Wok med nudlar och grönsaker x1 (Carolines)",
+                  dinner_allergy: "Samma som standardmiddag" },
+  "2026-07-17": { lunch: "Vego Wok med nudlar och grönsaker (rester från middag)",
+                  dinner: "Lax- och räksmörgåstårta 2x12 bitar (ICA)",
+                  dinner_veg: "Vegetarisk smörgåstårta x3 bitar (ICA)",
+                  dinner_allergy: "Glutenfri lax- och räksmörgåstårta x3 bitar (ICA)",
+                  dessert: "Gräddtårta jordgubb 16 bitar · Prinsesstårta 16 bitar · Glass (ICA)" },
+  "2026-07-18": { lunch: "Kycklingpasta med paprika och örter 1x (Carolines)",
+                  dinner: "Lasagne Vegetariana storpack x2 · Lasagne Bolognese storpack x1",
+                  dinner_veg: "Samma",
+                  dinner_allergy: "Poké Bowl x1" },
+  "2026-07-19": { lunch: "", dinner: "", dinner_veg: "" },
 };
 
 // ─── DAGSPROGRAM ─────────────────────────────────────────────
@@ -462,7 +484,9 @@ const ROOMS = [
     const m = MEALS[s.date] || {};
     const lunch   = m.lunch   || "<em style='color:#aaa'>Ej inlagt</em>";
     const dinner  = m.dinner  || "<em style='color:#aaa'>Ej inlagt</em>";
-    const dv      = m.dinner_veg ? `<br><span class='tag veg'>🌿 Veg: ${m.dinner_veg}</span>` : "";
+    const dv      = m.dinner_veg     ? `<br><span class='tag veg'>🌿 Veg: ${m.dinner_veg}</span>` : "";
+    const da      = m.dinner_allergy ? `<br><span class='tag allergy'>⚠️ Allergi: ${m.dinner_allergy}</span>` : "";
+    const dessert = m.dessert        ? `<br><span class='tag dessert'>🍰 Dessert: ${m.dessert}</span>` : "";
     const act     = s.activity ? `<span class='tag activity'>${s.activity}</span>` : "";
     const notes   = s.notes   ? `<small style='color:var(--muted)'>${s.notes}</small>` : "";
     sc.innerHTML += `
@@ -471,7 +495,7 @@ const ROOMS = [
         <div class="day-body">
           <div class="day-item"><div class="di-label">Aktivitet</div><div class="di-val">${act || "–"}</div>${notes ? `<div>${notes}</div>` : ""}</div>
           <div class="day-item"><div class="di-label">Lunch</div><div class="di-val">${lunch}</div></div>
-          <div class="day-item"><div class="di-label">Middag</div><div class="di-val">${dinner}${dv}</div></div>
+          <div class="day-item"><div class="di-label">Middag</div><div class="di-val">${dinner}${dv}${da}${dessert}</div></div>
         </div>
       </div>`;
   });
